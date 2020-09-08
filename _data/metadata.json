@@ -1,0 +1,20 @@
+{
+  "title": "햄스터 갬성 블로그",
+  "url": "https://juhojuho.github.io/",
+  "description": "Hamsters are always right",
+  "feed": {
+    "subtitle": "Hamsters are always right",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "https://juhojuho.github.io/"
+  },
+  "jsonfeed": {
+    "path": "/feed/feed.json",
+    "url": "https://juhojuho.github.io/"
+  },
+  "author": {
+    "name": "선주호",
+    "email": "soju@kaist.ac.kr",
+    "url": "https://juhojuho.github.io/"
+  }
+}
