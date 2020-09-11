@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177518541-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177518541-1');
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[JS] Set</title>
+    <meta name="description" content="Set은 Map과 마찬가지로 ES6에 들어 새로 추가된 built-in object 중 하나이다. Set이란 이름답게 우리가 고등학교 1학년 수학시간 첫 단원에서 배웠던 집합과 기능이 유사하다. 집합의 가장 큰 특징이 무엇인가. 집합의 원소들은 서로 다르며, 같은 원소가 여러 개 있을 수 없다.">
+    <meta name="google-site-verification" content="l1HzNpcuiOpfuOSg2r-oNIA3H7Csyir1J6Ndxn58yBg" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prim-dracula.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="햄스터 갬성 블로그">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="햄스터 갬성 블로그">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/">햄스터 갬성 블로그</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/">Home</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>[JS] Set</h1>
+
+<p><code>Set</code>은 <code>Map</code>과 마찬가지로 ES6에 들어 새로 추가된 built-in object 중 하나이다. &quot;Set&quot;이란 이름답게 우리가 고등학교 1학년 수학시간 첫 단원에서 배웠던 집합과 기능이 유사하다. 집합의 가장 큰 특징이 무엇인가. <strong>집합의 원소들은 서로 다르며, 같은 원소가 여러 개 있을 수 없다.</strong> JS의 <code>Set</code>의 특징 역시 여기서 크게 벗어나지 않는다.</p>
+<h2 id="10-%EA%B0%80-1%EB%8B%A8%EC%9B%90-%EC%A7%91%ED%95%A9">10-가 1단원 집합 <a class="direct-link" href="#10-%EA%B0%80-1%EB%8B%A8%EC%9B%90-%EC%A7%91%ED%95%A9">#</a></h2>
+<p><code>Set</code>은 수학의 집합과 같이 중복된 값을 포함할 수 없다. 대신 <code>Set</code> 속에 존재하는 값이 아니라면 어떠한 값도 그 안에 새로 포함될 수 있다. <code>String</code>, <code>Boolean</code> 같은 primitive value는 물론이고 <code>Array</code> 등의 ojbect 기반의 값도 가능하다. <code>Set</code>에 새 값을 더할 때는 <code>.add()</code>를 사용하자.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> newSet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>newSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><br>newSet<span class="token punctuation">.</span>size <span class="token comment">// 1</span><br>newSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><br>newSet<span class="token punctuation">.</span>size <span class="token comment">// 1</span><br>newSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">{</span>id<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">)</span><br>newSet<span class="token punctuation">.</span>size <span class="token comment">// 2</span><br>newSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">{</span>id<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">)</span><br>newSet<span class="token punctuation">.</span>size <span class="token comment">// 3</span></code></pre>
+<p>앗! 혹시 위 결과가 이상하다고 느꼈는가. 아까 분명히 <code>Set</code> 안에 중복된 값이 못 들어간다고 했는데 ojbect <code>{id: 4}</code>가 두번 들어갔다. 이는 <code>Set</code> 안에 해당 object를 가리키는 주소값(reference)가 저장되기 때문이다. 비록 내용은 같을 지라도 각각 다른 주소값을 가지기 때문에 <code>Set</code>에 문제 없이 추가되었다. <code>{a: 1} == {a: 1}</code>의 결과가 <code>false</code>인 것과 같은 이치다.</p>
+<h2 id="set-%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0">Set 제대로 활용하기 <a class="direct-link" href="#set-%EC%A0%9C%EB%8C%80%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0">#</a></h2>
+<p><code>Set</code>을 다루기 위한 method는 다음과 같다.</p>
+<ul>
+<li><code>new Set</code>: 빈 <code>Set</code>을 생성한다.</li>
+<li><code>new Set(iterable)</code>: 빈 <code>Set</code>을 생성하고 파라미터로 받은 iterable ojbect 속 값을 중복되지 않게 채워넣는다. 만약 array에 있는 중복된 값을 제거하고 싶을 때, 이 방법을 사용하면 단 한 줄로 원하는 결과를 얻을 수 있다.</li>
+<li><code>set.size</code>: <code>Set</code>에 속한 값의 수를 반환한다.</li>
+<li><code>set.has(value)</code>: 만약 파라미터로 받은 value가 <code>Set</code>에 속하면 <code>true</code>를 반환한다.</li>
+<li><code>set.add(value)</code>: 파라미터로 받은 value을 <code>Set</code>에 추가한다. 만약 이미 존재하면 추가하지 않는다.</li>
+<li><code>set.delete(value)</code>: 파라미터로 받은 value가 <code>Set</code>에 포함되어 있으면 제거한다.</li>
+<li><code>set.keys(), set.values(), set.entries()</code>: <code>Map</code>의 그것과 동일하다. <a href="https://juhojuho.github.io/posts/js-map/">Map 포스트</a> 참고</li>
+</ul>
+<h2 id="%ED%95%9C-%EA%B0%80%EC%A7%80%EB%A7%8C-%EB%8D%94-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90!">한 가지만 더 알아보자! <a class="direct-link" href="#%ED%95%9C-%EA%B0%80%EC%A7%80%EB%A7%8C-%EB%8D%94-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90!">#</a></h2>
+<p>한 가지 의문점이 든다. <code>Set</code>에서 말하는 &quot;동일한 값&quot;의 판단 기준은 무엇일까? Boolean type <code>true</code>와 String type <code>&quot;true&quot;</code>는 같을까? 정답은.. 아니요! 기본적으로 <code>===</code> operation과 비슷하다고 생각하면 된다. <code>===</code>는 우선 값을 비교하고, type도 같은지 비교한다. 따라서 위 경우는 값은 같으나 type이 다르기 때문에 한 <code>Set</code> 안에 들어갈 수 있다. 사소한 팁으로 primitive type 중 하나인 NaN을 서로 비교하면 <code>===</code> 결과 서로 다른 값이라 판단되지만 <code>Set</code> 안에서는 같은 값이라 판단되어 단 하나만 추가된다. <em>(진짜 사소하다..)</em></p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> numSet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span> <span class="token comment">// {"1"}</span><br>numSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">// {"1", 1}</span><br>numSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment">// {"1", 1, true}</span><br>numSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"true"</span><span class="token punctuation">)</span> <span class="token comment">// {"1", 1', true, "true"}</span><br>numSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span> <span class="token comment">// {"1", 1', true, "true", NaN}</span><br>numSet<span class="token punctuation">.</span>size <span class="token comment">// 5</span><br>numSet<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span> <span class="token comment">// {"1", 1', true, "true", NaN}</span><br>numSet<span class="token punctuation">.</span>size <span class="token comment">// 5</span></code></pre>
+<p><strong>Reference</strong><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set - JavaScript | MDN</a><br>
+<a href="https://hacks.mozilla.org/2015/06/es6-in-depth-collections/">ES6 In Depth: Collections</a></p>
+
+
+<hr>
+<ul><li>Next: <a href="/posts/window10-usb-from-mac/">맥OS에서 윈도우10 설치 USB 만들기</a></li><li>Previous: <a href="/posts/js-map/">[JS] Map &amp; Set</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/js-set/ -->
+  </body>
+</html>
