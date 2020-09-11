@@ -1,14 +1,15 @@
 ---
-title: 내맘대로ES6 > Arrow Function
-date: 2017-04-01 01:02:13
+title: "[JS] Arrow Function"
+description: "ES6를 한 번이라도 접해본 사람이라면 Arrow Function을 알고 있을 것이다. Arrow Function은 코드의 수를 획기적으로 줄이고 가독성을 높인다. 단순히 문법적 편리성 뿐만 아니라 this의 용법도 달라진다."
+date: 2019-04-01
 tags: 
-    - Javascript
+    - JS
     - ES6
-    - Arrow Function
+    - arrow-function
 layout: layouts/post.njk
 ---
 
-ES6를 한 번이라도 접해본 사람이라면 Arrow Function을 알고 있을 것이다. 그만큼 중요하고 많이 쓰이는 개념이다. Arrow Function은 코드의 수를 획기적으로 줄이고 가독성을 높인다. 하지만 단순히 문법적 편리성이 다가 아니다. 또 하나 중요한 기능을 제공한다. 이번 포스트에서 자세히 알아보자.
+ES6를 한 번이라도 접해본 사람이라면 Arrow Function을 알고 있을 것이다. Arrow Function은 코드의 수를 획기적으로 줄이고 가독성을 높인다. 단순히 문법적 편리성 뿐만 아니라 `this`의 용법도 달라진다. 이번 포스트에서 자세히 알아보자.
 
 본격적으로 들어가기 전에 간단한 퀴즈 2개를 풀어보자.
 
@@ -34,7 +35,7 @@ bar.b() // What's the output?
 
 ## 넘나 편리한 것
 가끔 자바스크립트를 쓰다 보면 간단한 로직을 위해 생각보다 많은 코드를 쓸 때가 있다.
-```javascript
+```js
 var arr = [1, 2, 3, 4, 5];
  
 // Before ES6
@@ -45,11 +46,11 @@ arr.map(function(x) {
 // ES6
 arr.map((x) => x * 2)
 ```
-배열의 모든 값을 2배 하는 간단한 코드다. 위와 아래 중 어떤 코드가 더 읽기 편한가. 물론 워낙 짧은 코드라서 둘 다 가독성이 좋다. 하지만 코드의 양이 많아질수록 문법적 간단성[^1]은 큰 도움이 된다. Arrow Function도 그런 면에서 함수를 정의하는 기존의 `function` 키워드의 대체재로써 ES6에 새로 추가되었다. Arrow Function을 쓰면 훨씬 간단하게 함수를 표현할 수 있다.
+배열의 모든 값을 2배 하는 간단한 코드다. 위와 아래 중 어떤 코드가 더 읽기 편한가. 물론 워낙 짧은 코드라서 둘 다 가독성이 좋다. 하지만 코드의 양이 많아질수록 syntatic sugar는 큰 도움이 된다. Arrow Function도 그런 면에서 함수를 정의하는 기존의 `function` 키워드의 대체재로써 ES6에 새로 추가되었다. Arrow Function을 쓰면 훨씬 간단하게 함수를 표현할 수 있다.
 
 ## 본격적으로 Arrow Function 활용하기
 
-```javascript
+```js
 var names = () => 'Harry';
 var square = x => x * x;
 var nothing = (x, y) => {x + y}
@@ -64,7 +65,7 @@ square(5) // 25
 nothing(1, 2) // undefined
 printAll('a', 'b', 'c') // logs a, b, c
 ```
-Arrow Function은 `function` 키워드가 필요 없고 특정 조건에서 `return`이나 `{ }` 중괄호까지 생략할 수 있다. 단지 `=>` 키워드만 필요하다. `=>` 앞에는 매개변수가 있고 뒤에 body[^2]가 위치한다.
+Arrow Function은 `function` 키워드가 필요 없고 특정 조건에서 `return`이나 `{ }` 중괄호까지 생략할 수 있다. 단지 `=>` 키워드만 필요하다. `=>` 앞에는 매개변수가 있고 뒤에 함수의 본문이 위치한다.
 
 매개변수는 기존의 방식처럼 `( )` 소괄호로 감싸면 된다. 단, 매개변수가 하나면 괄호를 생략해도 된다. 매개변수가 없거나 하나 이상이면 괄호가 필요하다.
 
@@ -74,7 +75,7 @@ body는 이전처럼 `{ }` 중괄호로 감싸면 된다. 단, body가 단 한 �
 
 Arrow Function의 역할은 단순히 코드 길이를 줄이는 게 아니다. Arrow Function을 사용하면 `this`의 용법이 달라진다.
 
-```javascript
+```js
 var foo = {
     bar: function() {
         setTimeout(function() {
@@ -90,7 +91,7 @@ foo.bar() // logs window
 
 하지만 Arrow function을 사용하면 `this`가 정적으로 정해진다. 그래서 코드만 잘 살펴봐도 `this`에 어떤 값이 들어갈지 쉽게 유추할 수 있다. Arrow function에서 `this`는 한 단계 밖 scope의 `this`와 일치한다. 쉽게 말하면 `this`를 평범한 변수 취급하라는 얘기다. 즉, `this`를 Arrow Function 내부에는 존재하지 않는 변수여서 한 단계 위의 `this`를 가져온다고 생각하면 편하다. 마치 아래 코드에서 변수 `a`가 하듯이 말이다.
 
-```javascript
+```js
 function foo() {
     var a = "Hello World!";
     function bar() {
@@ -104,7 +105,7 @@ foo() // logs "Hello World!"
 
 함수 `bar` 내부에 변수 `a`가 존재하지 않아 자바스크립트 엔진은 한 단계 위 scope(이 경우 함수 `foo`)에서 `a`가 있는지 찾는다. 따라서 함수 `foo` 내부의 `a`가 출력된다. Arrow Function 속에 있는 `this`는 변수 `a`와 비슷하게 작동한다. 이제 실제 예를 보며 `this` 찾기를 연습해보자.
 
-```javascript
+```js
 var foo = {
     bar: function() {
         setTimeout(() => {
@@ -120,7 +121,7 @@ foo.bar() // logs foo
 
 혹시 이해가 가지 않는다면 아래의 코드를 참고하자. 위의 코드를 그대로 풀어쓰면 아래의 코드가 나온다.
 
-```javascript
+```js
 var foo = {
     bar: function() {
         var self = this;
@@ -151,6 +152,3 @@ bar.b() // logs window
 이런 `this`의 의미를 변화를 이해하지 않으면 우리가 의도했던 바와 다르게 프로그램이 동작할 수 있다. Arrow Function은 결코 문법적 편리성만 제공하지 않는다! 바뀌는 `this`의 용법 반드시 이해하자.
 
 매번 느끼는 거지만 아는 것을 말로 풀어내기는 참 힘들다. 특히 코딩 관련 지식을 글로 풀어내긴 더 힘든 것 같다. 이번 포스트는 내가 봐도 독자가 이해하기 어려울 것 같다(ㅠ_ㅠ). 혹시 이해 가지 않은 부분이 있으면 꼭 댓글로 달아주길 바란다. 그 부분에 대해 더 자세히 설명해 주겠다.
-
-[^1]: 영어로 syntactic sugar. 코드를 읽고 이해하기 쉽도록 디자인된 프로그래밍 언어의 문법을 의미한다.
-[^2]: 함수의 로직 부분. 마땅히 표현할 한국어 단어가 생각나지 않아 영문 그대로 body로 표현했다.

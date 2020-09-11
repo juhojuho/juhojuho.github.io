@@ -1,7 +1,7 @@
 ---
 title: hexo 기반 블로그에 꿀기능 추가하기
-date: 2017-03-27 11:10:41
-categories: hexo
+description: "hexo는 static site generator다. 쉽게 말해서 블로그 만드는 라이브러리라 생각하면 된다. Ruby 기반의 Jekyll과 함께 커스텀 블로그 계의 양대산맥으로 군림하고 있다."
+date: 2019-03-27
 tags: 
     - hexo
     - blog
@@ -12,7 +12,7 @@ layout: layouts/post.njk
 [hexo](https://hexo.io)는 static site generator다. 쉽게 말해서 블로그 만드는 라이브러리라 생각하면 된다. Ruby 기반의 Jekyll과 함께 커스텀 블로그 계의 양대산맥으로 군림하고 있다. 그 자체만으로 굉장히 강력한 기능을 제공하지만 몇 가지 설정과 플러그인을 추가해 주면 편하게 블로그를 운영할 수 있다. 아래는 아름다운 블로그를 위한 꿀팁들이다.
 
 ## Themes
-우선 내 블로그를 좀 더 멋지게 꾸며본다. 기본 theme인 [landscape](https://github.com/hexojs/hexo-theme-landscape)도 좋지만 솔직히 말해서 별 기능은 없다. [여기](https://hexo.io/themes/)에 hexo에서 제공하는 모든 theme 목록이 있다. 어떤 theme은 단순히 레이아웃 변화 외에도 disqus 등의 댓글 시스템이나 google analytics 같은 기능을 블로그에 손쉽게 적용할 수 있게 도와준다. 쇼핑하는 마음으로 서너 개 골라서 직접 블로그에 적용시켜 보자. 나는 [HyunSeob](https://github.com/hyunseob)님의 [overdose](https://github.com/HyunSeob/hexo-theme-overdose)를 쓰고 있다. 
+우선 내 블로그를 좀 더 멋지게 꾸며본다. 기본 theme인 [landscape](https://github.com/hexojs/hexo-theme-landscape)도 좋지만 솔직히 말해서 별 기능은 없다. [여기](https://hexo.io/themes/)에 hexo에서 제공하는 모든 theme 목록이 있다. 어떤 theme은 단순히 레이아웃 변화 외에도 disqus 등의 댓글 시스템이나 google analytics 같은 기능을 블로그에 손쉽게 적용할 수 있게 도와준다. 쇼핑하는 마음으로 서너 개 골라서 직접 블로그에 적용시켜 보자.
 
 ## Markdown
 Markdown를 사용하면 귀찮게 html tag로 열고 닫지 않아도 손쉽게 웹 템플릿을 생성할 수 있다. hexo도 기본으로 Markdown renderer를 제공하지만 그 기능은 매우 제한적이다. 주석도 못 달고 heading에 자동으로 anchor tag도 안 달아준다. 좀 더 풍부한 기능을 사용하기 위해 [hexo-renderer-markdown-it](https://github.com/celsomiranda/hexo-renderer-markdown-it) 플러그인을 사용하자. [설치 과정](https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/Getting-Started)을 마친 후에 `_config.yml`에 마크다운 설정을 추가해 주자. 내가 사용하고 있는 설정은 다음과 같다.
@@ -54,14 +54,9 @@ Github pages를 이용하면 손쉽게 포스트를 발행할 수 있다. 하지
     > 192.30.252.153
     > 192.30.252.154
 3. 블로그 github repo의 `Settings`에서 'Custom domain' 칸에 내 도메인을 입력하고 저장 버튼을 누른다.
-4. 마지막으로 CNAME 파일을 추가해야 한다.[^1] 내 hexo blog의 루트 폴더에 있는 public 폴더에 CNAME 파일을 생성한다. 그리고 내 도메인을 입력하자. 아래처럼 www나 http:// 빼고 오직 도메인만 입력하자.
-```
-juhojuho.com
-```
+4. 마지막으로 CNAME 파일을 추가해야 한다. 내 hexo blog의 루트 폴더에 있는 public 폴더에 CNAME 파일을 생성한다. 그리고 내 도메인을 입력하자. www나 http:// 빼고 오직 도메인만 입력하자.
+
 이외에도 도메인 설정을 더 추가할 수 있지만 이 포스트 성격에 맞지 않다 생각해서 이 정도로 줄였다. 더 많이 알고싶다면 [이 포스트](https://help.github.com/articles/using-a-custom-domain-with-github-pages/)를 참조하자.
 
 ## More
 사실 대부분의 꿀기능은 이미 hexo의 공식 웹사이트에 적혀 있다. 위에 적은 것들은 하나의 가이드라인이자 개인적으로 추천하는 플러그인일 뿐이다. 더 많은 꿀기능을 원한다면 [이곳](https://hexo.io/plugins/)을 방문하자.
-
-
-[^1]: 이 파일을 추가하지 않으면 커밋할 때마다 도메인이 다시 *.github.io로 돌아간다.

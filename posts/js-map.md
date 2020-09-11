@@ -1,19 +1,21 @@
 ---
-title: 내맘대로ES6 > Map
-date: 2017-03-30 13:25:24
+title: "[JS] Map & Set"
+description: "어떤 프로그래밍 언어로 개발하던 Map은 유용하게 사용된다. 옆 동네 Python에서 Map을 쓰는 빈도를 봐도 알 수 있다. 하지만 안타깝게도 Map은 ES6 전까지 자바스크립트에 존재하지 않았다."
+date: 2020-03-30
 tags: 
-    - Javascript
+    - JS
     - ES6
     - Map
+    - Set
 layout: layouts/post.njk
 ---
 
-데이터 구조 수업을 듣다 보면 Map은 반드시 나온다. 그만큼 많이 쓰이고 유명하다. 옆 동네 Python에서 Map을 쓰는 빈도를 봐도 알 수 있다. 하지만 안타깝게도 Map은 ES6 전까지 자바스크립트에 존재하지 않았다. 대신 Object에 몇 가지 꼼수[^1]를 부리며 그 빈자리를 달랠 뿐이었다. 이번 포스트에서는 ES6에 새롭게 추가된 데이터 구조 Map에 대해 알아보자.
+어떤 프로그래밍 언어로 개발하던 Map은 유용하게 사용된다. 옆 동네 Python에서 Map을 쓰는 빈도를 봐도 알 수 있다. 하지만 안타깝게도 Map은 ES6 전까지 자바스크립트에 존재하지 않았다. 대신 Object에 몇 가지 꼼수를 부리며 그 빈자리를 달랠 뿐이었다. *보통 Object에 연결된 prototype을 제거하기 위해 `Object.create(null)`을 이용한다. 만약 평범한 Object를 사용했다면 주렁주렁 달려 있는 property 때문에 Map에 key 삽입시 충돌이 일어날 수도 있다.* 이번 포스트에서는 ES6에 새롭게 추가된 데이터 구조 Map에 대해 알아보자.
 
 ## Google Map 할 때 그 Map?
 Map은 Object와 비슷하게 key와 value를 쌍으로 저장한다. 이때, key는 중복되지 않는다. 만약 이미 저장된 key가 또 들어오면 기존 value를 새 값으로 덮어쓴다. `set(key, value)` 함수로 key와 value를 저장하고 `get(key)`로 그 key와 연결된 value를 반환한다. 그리고 `new Map()`으로 Map을 생성한다. `new`를 쓰는 거로 보아 Map의 타입이 Object임을 알 수 있다. 마지막으로 삭제는 `delete(key)`로 하며 `clear()`로 모든 key, value 쌍을 지운다. 아래 코드에 기본적인 Map 사용법이 나와 있다.
 
-```javascript
+```js
 var myMap = new Map();
  
 typeof myMap // "object"
@@ -35,9 +37,9 @@ myMap.get('age') // undefined
 ## Map과 Object 
 여기까지 보면 Map은 Object와 상당히 유사하다. 그렇다면 왜 Map이 필요한 걸까? Map이 Object보다 나은 몇 가지 이유를 살펴보자.
 
-Object의 key는 반드시 String이거나 Symbol이다. [앞선 포스트](https://juhojuho.github.io/2017/03/29/js-symbol/)에서 봤듯이 ES6에서 새로 추가된 타입인 Symbol은 Object의 key로 사용될 수 있다. 반면에 Map의 key는 모든 타입을 허용한다. Number, Boolean은 물론이고 Object까지 가능하다. 즉, Object에 포함되는 function이나 array도 key로 사용할 수 있다.
+Object의 key는 반드시 String이거나 Symbol이다. [앞선 포스트](https://juhojuho.github.io/posts/js-symbol/)에서 봤듯이 ES6에서 새로 추가된 타입인 Symbol은 Object의 key로 사용될 수 있다. 반면에 Map의 key는 모든 타입을 허용한다. Number, Boolean은 물론이고 Object까지 가능하다. 즉, Object에 포함되는 function이나 array도 key로 사용할 수 있다.
 
-```javascript
+```js
 var myMap = new Map();
  
 var keyString = 'string key';
@@ -59,14 +61,14 @@ myMap.get(keySymbol); // "I am a symbol key"
 
 사소하지만 꽤 강력한 차이점이 하나 더 있다. Object는 크기를 구하는 built-in(이미 구현된) method나 property가 없다. `Object.keys(object).length`가 그나마 쉬운 방법이다. 하지만 time complexity가 linear하므로 Object가 커질수록 더 많은 시간이 소요된다. 반면에 Map은 `size` property로 크기를 단번에 구할 수 있다. 이 경우 `size` property가 수시로 갱신되므로 Map의 크기가 커져도 걸리는 시간에 영향을 주지 않는다.
 
-```javascript
+```js
 myMap.size // 4
 ```
 
 ## Map 가지고 지지고 볶기
 Map에 저장된 key와 value를 쭉 늘여놓고 싶으면 `values()`와 `keys()` 함수를 사용하면 된다. 단, 이 두 함수는 iterator를 반환한다. 따라서 추가적인 작업이 들어가야 예쁘게 표현될 수 있다. 지금 단계에서 iterator를 몰라도 괜찮다. 다음 포스트에서 다룰 예정이다. 이제 아래 코드를 보자.
 
-```javascript
+```js
 var myMap = new Map();
 myMap.set('a', 1);
 myMap.set('b', 2);
@@ -84,6 +86,3 @@ Array.from ( myMap.values() ); // [1, 2, 3]
 [Map - JavaScript | MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map)
 [ES6 In Depth: Collections](https://hacks.mozilla.org/2015/06/es6-in-depth-collections/)
 [You Don't Know JS: ES6 & Beyond](https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20%26%20beyond/ch5.md)
-
-[^1]: 보통 Object에 연결된 prototype을 제거하기 위해 `Object.create(null)`을 이용한다. 만약 평범한 Object를 사용했다면 주렁주렁 달려 있는 property 때문에 Map에 key 삽입시 충돌이 일어날 수도 있다.
-[^2]: 쉽게 말해서 C처럼 일일이 `free()` 안 해줘도 된다.

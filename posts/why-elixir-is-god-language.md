@@ -1,13 +1,15 @@
 ---
-title: 번역 | 큰 잠재력을 가진 언어, Elixir
-date: 2017-06-07 18:10:03
+title: "[번역] 큰 잠재력을 가진 언어, Elixir"
+description: "함수형 언어 Elixir와 웹 프레임워크 Phoenix는 최근해외에서 크게 인기를 끌고 있는 핫한 놈들입니다. Elixir는 Ruby, Clojure, Erlang의 영향을 받았으며 Erlang의 가상 머신에서 돌아갑니다."
+date: 2018-06-07
 tags:
-  - 번역
+  - translation
   - Elixir
+  - programming-language
 layout: layouts/post.njk
 ---
 
-함수형 언어 Elixir와 웹 프레임워크 Phoenix는 최근해외에서 크게 인기를 끌고 있는 핫한 놈들입니다. Elixir는 Ruby, Clojure, Erlang의 영향을 받았으며 Erlang의 가상 머신에서 돌아갑니다. Erlang이 가진 함수형 언어의 이점을 가져 오면서 프로그래머가 코딩하는 데 불편한 여러 포인트를 보완한 신생 언어입니다. 2011년에 처음 선보였지만 함수형 언어로 프로그래밍 언어 패러다임이 넘어가는 트렌드에 맞춰 빠르게 성장하고 있습니다. Elixir가 이처럼 재빨리 유명해진 이유에는 Phoenix의 역할도 큽니다. Phoenix는 Ruby On Rails의 코어 개발자가 만든 서버 사이드 웹 프레임워크입니다. ROR의 저조한 성능에 실망한 개발자들의 강력 대안[^1]로 떠오르며 최근 유명세를 얻고 있습니다. Reddit에 올라온 2017년에 새로 배우고 싶은 기술 스택이 무엇이냐는 질문에 절반 이상이 Elixr와 Phoenix를 선택하기도 했습니다. 그만큼 엄청난 포텐셜을 가진 조합입니다. 저도 아직 초보 Elixir 개발자지만 배울수록 신기하고 배울 맛 나는 감질나는 언어입니다. 이 글은 Elixir에 대한 overview로 적합하다 생각해 번역했습니다. 원문은 [Adrian Philipp](http://adrian-philipp.com/about/)의 [Why the Elixir language has great potential](http://adrian-philipp.com/post/why-elixir-has-great-potential)입니다.
+함수형 언어 Elixir와 웹 프레임워크 Phoenix는 최근해외에서 크게 인기를 끌고 있는 핫한 놈들입니다. Elixir는 Ruby, Clojure, Erlang의 영향을 받았으며 Erlang의 가상 머신에서 돌아갑니다. Erlang이 가진 함수형 언어의 이점을 가져 오면서 프로그래머가 코딩하는 데 불편한 여러 포인트를 보완한 신생 언어입니다. 2011년에 처음 선보였지만 함수형 언어로 프로그래밍 언어 패러다임이 넘어가는 트렌드에 맞춰 빠르게 성장하고 있습니다. Elixir가 이처럼 재빨리 유명해진 이유에는 Phoenix의 역할도 큽니다. Phoenix는 Ruby On Rails의 코어 개발자가 만든 서버 사이드 웹 프레임워크입니다. ROR의 저조한 성능에 실망한 개발자들의 강력 대안(*Phoenix 1.3 버젼 들어와서 ROR의 패턴과 점점 멀어지고 있긴 합니다.*)으로 떠오르며 최근 유명세를 얻고 있습니다. Reddit에 올라온 2017년에 새로 배우고 싶은 기술 스택이 무엇이냐는 질문에 절반 이상이 Elixr와 Phoenix를 선택하기도 했습니다. 그만큼 엄청난 포텐셜을 가진 조합입니다. 저도 아직 초보 Elixir 개발자지만 배울수록 신기하고 배울 맛 나는 감질나는 언어입니다. 이 글은 Elixir에 대한 overview로 적합하다 생각해 번역했습니다. 원문은 [Adrian Philipp](http://adrian-philipp.com/about/)의 [Why the Elixir language has great potential](http://adrian-philipp.com/post/why-elixir-has-great-potential)입니다.
 
 <hr>
 
@@ -35,9 +37,6 @@ Elixir/Erlang의 성능에 만족하고 있습니다.
 비록 Elixir가 신생 언어지만 Pinterest, Bleacher Report, Brightcove 등등의 곳에서 사용하고 있습니다.
 
 
-
-
-
 ## Elixr을 배우는 팁
 그동안 객체 지향 언어만 배워왔다면 그동안 익힌 배턴을 버리기 쉽지 않았습니다. 하지만 충분히 가치있는 일입니다. 어떻게 시작해야 하나요?
 
@@ -55,5 +54,3 @@ Elixir의 창시자는 잘 알려진 루비 덕후 Jose Vlim입니다. Elixir는
 
 ## Elixir의 미래?
 누가 알겠어요. 제가 판단하기로 Elixir는 신생 언어지만 주류가 될 수 있는 잠재성이 있습니다. Elixir를 쓰면 빠르게 믿을 수 있는 높은 생산성의 동시성 어플리케이션을 만들 수 있습니다. 전 2017년에 적어도 몇 가지 소규모 프로젝트에 Elixir를 사용할 계획입니다.
-
-[^1]: Phoenix 1.3 버젼 들어와서 ROR의 패턴과 점점 멀어지고 있긴 합니다.

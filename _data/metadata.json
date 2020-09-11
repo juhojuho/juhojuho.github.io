@@ -1,9 +1,9 @@
 {
   "title": "햄스터 갬성 블로그",
   "url": "https://juhojuho.github.io/",
-  "description": "Hamsters are always right",
+  "description": "햄스터의 개발 관련 Tech Blog",
   "feed": {
-    "subtitle": "Hamsters are always right",
+    "subtitle": "햄스터의 개발 관련 Tech Blog",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
     "id": "https://juhojuho.github.io/"

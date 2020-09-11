@@ -1,21 +1,20 @@
 ---
-title: 내맘대로ES6 > Symbol
-date: 2017-03-29 10:46:58
+title: "[JS] Symbol"
+description: "이번 포스트의 주제는 Symbol이다. ES6를 배울 때 보통은 소외당하는 개념이지만 자바스크립트가 최초로 표준화된 1997년 이래 처음으로 추가된 새로운 타입인 만큼 자세히 알아보자."
+date: 2020-03-29
 tags: 
-    - Javascript
+    - JS
     - ES6
     - Symbol
 layout: layouts/post.njk
 ---
 
-'내맘대로ES6' 시리즈의 첫 포스트다! 보통은 `let`과 `const`부터 다루지만 이번 포스트의 주인공은 Symbol이다. ES6를 배울 때 보통은 소외당하는 개념이지만 자바스크립트가 최초로 표준화된 1997년 이래 처음으로 추가된 새로운 타입인 만큼 첫 포스트의 주제로 정했다.
-
-시리즈 이름이 '내맘대로ES6'인 이유는 말 그대로 다루는 순서를 내 마음대로 정할 것이기 때문이다. 다음 포스트 주제로 무엇이 나올지 나도 모른다. 그냥 그날 아침 기분 내키는 대로 적을 생각이다. 그래도 글의 난이도는 내 마음대로 하지 않겠다. 요즘 들어 새로 웹 프로그래밍에 입문하는 사람이 많은 만큼 비전공자도 무리 없이 받아들일 수 있도록 쉽게 쓰도록 노력할 예정이다. 그럼 이제부터 symbol에 대해 알아보자.
+이번 포스트의 주제는 Symbol이다. ES6를 배울 때 보통은 소외당하는 개념이지만 자바스크립트가 최초로 표준화된 1997년 이래 처음으로 추가된 새로운 타입인 만큼 자세히 알아보자.
 
 ## 심벌즈 말고 Symbol
 먼저 symbol을 사용한 코드를 보자.
 
-```javascript
+```js
 var sym1 = Symbol();
  
 typeof sym1 // "symbol"
@@ -45,9 +44,9 @@ typeof symObj // "object"
 
 ## 그래서 어디다 쓰는 건데
 
-결론부터 말하자면 symbol은 object의 property[^1]를 숨기는 데 쓰일 **예정**이었다. 아래의 코드를 보자.
+결론부터 말하자면 symbol은 object의 property를 숨기는 데 쓰일 **예정**이었다. 아래의 코드를 보자.
 
-```javascript
+```js
 var obj = {
     id: 1234,
     name: "juhojuho",
@@ -71,7 +70,7 @@ Object.getOwnPropertySymbols( obj ) // [Symbol(password)]
 
 그럼 뭐지, 결국 symbol은 쓰잘데기 없는 것인가? 대답은 '아니요'다. symbol을 굳이 ES6에 추가한 데는 다 이유가 있다! symbol을 사용하면 property 간에 충돌을 피할 수 있다. 앞서 말했듯이 symbol은 그 자체로 유일하다. 심지어 `Symbol('password')`와 `Symbol('password')`조차도 다른 값임을 기억하자. 따라서 symbol을 이용하면 object에 중복된 property를 추가할 때 생기는 충돌을 피할 수 있다. 아래의 경우처럼 말이다. 매개변수가 같은 세 symbol 모두 충돌 없이 `obj`에 저장된다.
 
-```javascript
+```js
 var obj = {};
  
 obj[Symbol('name')] = "Moon"
@@ -87,7 +86,7 @@ obj // Object {Symbol(name): "Moon", Symbol(name): "Ahn", Symbol(name): "Lee"}
 
 간혹 한 symbol을 여러 번 사용해야 하는 경우가 있다. 혹은 여러 자바스크립트 파일이나 모듈에서 symbol을 공유해야 하는 경우도 있다. 다행히 symbol을 **symbol registry**에 등록하면 이 문제가 해결된다. `Symbol.for()` 함수를 이용하면 symbol registry에 등록할 수 있고, 나중에 여러 번 불러 쓰는 것도 가능하다. 불러올 때도 똑같이 `Symbol.for()` 함수를 쓰면 이전에 등록했던 symbol이 반환된다. 아래 코드를 참조하자.
 
-```javascript
+```js
 var sym1 = Symbol.for('foo');
 var sym2 = Symbol.for('foo');
  
@@ -106,5 +105,3 @@ sym1 === sym2 //true
 [Symbol - JavaScript | MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 [ES6 In Depth: Symbols](https://hacks.mozilla.org/2015/06/es6-in-depth-symbols/)
 [You Don't Know JS: ES6 & Beyond](https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20%26%20beyond/ch2.md)
-
-[^1]: property를 한국어로 대체할 만한 단어가 도저히 떠오르지 않아 어쩔 수 없이 영어로 표기했다.
