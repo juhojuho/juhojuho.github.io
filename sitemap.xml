@@ -22,13 +22,18 @@
   </url>
   
   <url>
+    <loc>https://juhojuho.github.io/posts/js-map/</loc>
+    <lastmod>2020-02-03</lastmod>
+  </url>
+  
+  <url>
     <loc>https://juhojuho.github.io/posts/js-symbol/</loc>
     <lastmod>2020-03-29</lastmod>
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/posts/js-map/</loc>
-    <lastmod>2020-03-30</lastmod>
+    <loc>https://juhojuho.github.io/posts/garbage-collection-js/</loc>
+    <lastmod>2020-07-13</lastmod>
   </url>
   
   <url>
@@ -57,51 +62,6 @@
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/JS/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/ES6/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/Set/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/translation/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/programming-language/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/Elixir/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/macos/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/Map/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/arrow-function/</loc>
-    <lastmod>2020-09-11</lastmod>
-  </url>
-  
-  <url>
     <loc>https://juhojuho.github.io/tags/hexo/</loc>
     <lastmod>2020-09-11</lastmod>
   </url>
@@ -117,12 +77,52 @@
   </url>
   
   <url>
+    <loc>https://juhojuho.github.io/tags/JS/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/ES6/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/Map/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/programming-language/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/arrow-function/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/Set/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/translation/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/macos/</loc>
+    <lastmod>2020-09-11</lastmod>
+  </url>
+  
+  <url>
     <loc>https://juhojuho.github.io/tags/Symbol/</loc>
     <lastmod>2020-09-11</lastmod>
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/_drafts/garbage-collection-js/</loc>
+    <loc>https://juhojuho.github.io/tags/Elixir/</loc>
     <lastmod>2020-09-11</lastmod>
   </url>
 </urlset>
