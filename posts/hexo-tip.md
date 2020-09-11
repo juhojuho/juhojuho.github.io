@@ -1,6 +1,6 @@
 ---
 title: hexo 기반 블로그에 꿀기능 추가하기
-description: "hexo는 static site generator다. 쉽게 말해서 블로그 만드는 라이브러리라 생각하면 된다. Ruby 기반의 Jekyll과 함께 커스텀 블로그 계의 양대산맥으로 군림하고 있다."
+description: "hexo는 static site generator다. 쉽게 말해서 블로그 만드는 라이브러리라 생각하면 된다. Ruby 기반의 Jekyll과 함께 커스텀 블로그 계의 양대산맥으로 군림하고 있다. 그 자체만으로 굉장히 강력한 기능을 제공하지만 몇 가지 설정과 플러그인을 추가해 주면 편하게 블로그를 운영할 수 있다."
 date: 2019-03-27
 tags: 
     - hexo
