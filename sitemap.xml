@@ -3,42 +3,42 @@
   
   <url>
     <loc>https://juhojuho.github.io/posts/why-elixir-is-god-language/</loc>
-    <lastmod>2018-06-07</lastmod>
+    <lastmod>2018-09-07</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/hexo-tip/</loc>
-    <lastmod>2019-03-27</lastmod>
+    <lastmod>2019-04-27</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/js-arrow-function/</loc>
-    <lastmod>2019-04-01</lastmod>
+    <lastmod>2019-08-01</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/new-language-translation/</loc>
-    <lastmod>2019-08-21</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/posts/js-symbol/</loc>
-    <lastmod>2020-03-29</lastmod>
+    <lastmod>2019-10-26</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/js-map/</loc>
-    <lastmod>2020-03-30</lastmod>
+    <lastmod>2020-04-30</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/posts/js-symbol/</loc>
+    <lastmod>2020-05-29</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/js-set/</loc>
-    <lastmod>2020-07-24</lastmod>
+    <lastmod>2020-08-24</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/window10-usb-from-mac/</loc>
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2021-09-01</lastmod>
   </url>
   
   <url>
@@ -53,21 +53,6 @@
   
   <url>
     <loc>https://juhojuho.github.io/tags/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/JS/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/ES6/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/arrow-function/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
@@ -87,7 +72,37 @@
   </url>
   
   <url>
+    <loc>https://juhojuho.github.io/tags/JS/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/ES6/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/arrow-function/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
     <loc>https://juhojuho.github.io/tags/Map/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/translation/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/Elixir/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/programming-language/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
@@ -98,21 +113,6 @@
   
   <url>
     <loc>https://juhojuho.github.io/tags/Symbol/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/translation/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/programming-language/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/Elixir/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
