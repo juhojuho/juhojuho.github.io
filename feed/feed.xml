@@ -13,9 +13,41 @@
 	</author>
 	
 	<entry>
+		<title>[FE 면접] 자바스크립트에서 어떻게 객체의 속성 변경을 막을 수 있을까?</title>
+		<link href="https://juhojuho.github.io/posts/frontend-codetest-1/"/>
+		<updated>2022-11-17T15:00:00+09:00</updated>
+		<id>https://juhojuho.github.io/posts/frontend-codetest-1/</id>
+		<content type="html">&lt;h3 id=&quot;%EB%A9%B4%EC%A0%91-%EC%A7%88%EB%AC%B8&quot;&gt;면접 질문 &lt;a class=&quot;direct-link&quot; href=&quot;#%EB%A9%B4%EC%A0%91-%EC%A7%88%EB%AC%B8&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;객체(object)의 속성(property)의 변경을 막는 방법을 설명하라. 즉, 다음과 같이 이미 선언된 객체의 &lt;code&gt;name&lt;/code&gt; 속성 변경을 막는 코드를 작성하라.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; guest &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    name&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;John&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    age&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;br&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;Peter&#39;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// ?&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;%EB%82%98%EB%A7%8C%EC%9D%98-%EB%8C%80%EB%8B%B5&quot;&gt;나만의 대답 &lt;a class=&quot;direct-link&quot; href=&quot;#%EB%82%98%EB%A7%8C%EC%9D%98-%EB%8C%80%EB%8B%B5&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;설명자(Descriptor)를 활용하여 객체의 속성값 변경을 막을 수 있다. 설명자는 말 그대로 객체의 한 속성에 대한 정보를 &lt;strong&gt;설명&lt;/strong&gt;하는 값으로 다음과 같은 몇 가지 정보를 내포한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;value: 해당 속성의 값(위 코드에서 &#39;John&#39;)&lt;/li&gt;
+&lt;li&gt;writable: 해당 속성의 변경 가능 여부&lt;/li&gt;
+&lt;li&gt;configurable: 해당 속성의 &lt;code&gt;Object.defineProperty()&lt;/code&gt;를 통한 설정 가능 여부&lt;/li&gt;
+&lt;li&gt;enumerable: 해당 속성이 열거 중에 나타나는 여부 (예를 들어, false로 설정하면 &lt;code&gt;Object.values()&lt;/code&gt; 실행 중에 해당 속상이 나타나지 않는다)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;설명자는 &lt;code&gt;Object.getOwnPropertyDescriptor(object, property)&lt;/code&gt;를 통해 찾을 수 있다.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getOwnPropertyDescriptor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;name&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;// {value: &#39;John&#39;, writable: true, enumerable: true, configurable: true}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이 중에서 &lt;code&gt;writable&lt;/code&gt;이 객체의 속성 변경과 관련되어 있다. 값을 false로 설정하면 해당 객체의 속성 변경을 막을 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Object.defineProperty(object, property, descriptor)&lt;/code&gt;를 통해 설명자를 변경할 수 있다. 참고로 &lt;code&gt;configurable&lt;/code&gt;이 false로 설정되어 있으면 위 함수를 통해 설정자 변경이 불가능하다. 다음과 같이 &lt;code&gt;name&lt;/code&gt; 속성의 변경을 막을 수 있다.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;defineProperty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;name&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; writable&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;Peter&#39;&lt;/span&gt;&lt;br&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token comment&quot;&gt;// &#39;John&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위에서 보듯이 &lt;code&gt;name&lt;/code&gt; 속성 변경 시도에 에러가 발생하진 않지만 실제 값에 변경은 일어나지 않았다.&lt;/p&gt;
+&lt;h3 id=&quot;%2B%EC%95%8C%ED%8C%8C&quot;&gt;+알파 &lt;a class=&quot;direct-link&quot; href=&quot;#%2B%EC%95%8C%ED%8C%8C&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;설명자를 통해 속성의 열거를 막을 수도 있다. &lt;code&gt;enumerable&lt;/code&gt;을 false로 설정하면 된다.&lt;br&gt;
+만약 객체에 속한 모든 속성의 변경을 막고 싶으면 &lt;code&gt;Object.freeze(object)&lt;/code&gt;를 사용하면 된다. 위 함수는 &lt;code&gt;writable&lt;/code&gt;과 &lt;code&gt;configurable&lt;/code&gt;를 flase로 설정한다.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;freeze&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;br&gt;Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getOwnPropertyDescriptor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;name&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;// {value: &#39;John&#39;, writable: false, enumerable: true, configurable: false}&lt;/span&gt;&lt;br&gt;Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getOwnPropertyDescriptor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;guest&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;age&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;// {value: 25, writable: false, enumerable: true, configurable: false}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Reference&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor&quot;&gt;Object.getOwnPropertyDescriptor() - JavaScript | MDN&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze&quot;&gt;Object.freeze() - JavaScript - MDN Web Docs&lt;/a&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>[JS] 가비지 컬렉션 (Garbage Collection)</title>
 		<link href="https://juhojuho.github.io/posts/garbage-collection-js/"/>
-		<updated>2022-11-17T15:00:00+09:00</updated>
+		<updated>2022-11-16T15:00:00+09:00</updated>
 		<id>https://juhojuho.github.io/posts/garbage-collection-js/</id>
 		<content type="html">&lt;p&gt;학부 시절 운영체제 수업에서 OS를 직접 구현하다보면 간혹 메모리가 부족하다는 버그가 뜨곤 했다. 보통 메모리 누수(memory leakage) 때문인데 메모리를 할당(e.g., malloc)하고 나중에 할당 해제(e.g., free)를 하지 않아 불필요한 메모리가 계속 쌓여 발생한다. C 같은 low-level 언어는 프로그래머가 직접 메모리를 관리할 수 있다. 하지만 JS나 Python 같은 대부분의 high-level 언어는 개발자가 임의로 메모리를 관리하지 못한다. 흠, 그럼 high-level 언어는 메모리 누수 발생을 어떻게 막는 걸까? 이 역할을 하는 게 가비지 컬렉터(Garbage colletor)이다. 가비지 컬렉터는 필요 없어진 메모리를 자체적으로 판단해 할당을 해제하여 메모리 누수의 발생을 막는다. V8 같은 JS 엔진에도 가비지 컬렉션이 구현되어 있다.&lt;/p&gt;
 &lt;h2 id=&quot;%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%88%84%EC%88%98-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0&quot;&gt;메모리 누수 관리하기 &lt;a class=&quot;direct-link&quot; href=&quot;#%EB%A9%94%EB%AA%A8%EB%A6%AC-%EB%88%84%EC%88%98-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;

@@ -57,17 +57,17 @@
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/hexo/</loc>
+    <loc>https://juhojuho.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/blog/</loc>
+    <loc>https://juhojuho.github.io/tags/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%20%EB%A9%B4%EC%A0%91/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/markdown/</loc>
+    <loc>https://juhojuho.github.io/tags/%EB%B8%94%EB%A1%9C%EA%B7%B8/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
@@ -82,27 +82,12 @@
   </url>
   
   <url>
+    <loc>https://juhojuho.github.io/tags/Symbol/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
     <loc>https://juhojuho.github.io/tags/arrow-function/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/Map/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/translation/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/Elixir/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/programming-language/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
@@ -112,17 +97,32 @@
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/Symbol/</loc>
+    <loc>https://juhojuho.github.io/tags/Map/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/macos/</loc>
+    <loc>https://juhojuho.github.io/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/%EB%B2%88%EC%97%AD/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/IT/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/garbage-collection-js/</loc>
+    <lastmod>2022-11-17</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/posts/frontend-codetest-1/</loc>
     <lastmod>2022-11-18</lastmod>
   </url>
 </urlset>
