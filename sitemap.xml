@@ -42,11 +42,6 @@
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/_drafts/garbage-collection-js/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
     <loc>https://juhojuho.github.io/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
@@ -62,6 +57,21 @@
   </url>
   
   <url>
+    <loc>https://juhojuho.github.io/tags/JS/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/ES6/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/arrow-function/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
     <loc>https://juhojuho.github.io/tags/hexo/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
@@ -73,16 +83,6 @@
   
   <url>
     <loc>https://juhojuho.github.io/tags/markdown/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/JS/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/tags/ES6/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
@@ -112,7 +112,7 @@
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/arrow-function/</loc>
+    <loc>https://juhojuho.github.io/tags/Elixir/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
@@ -122,7 +122,7 @@
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/Elixir/</loc>
-    <lastmod>2022-11-16</lastmod>
+    <loc>https://juhojuho.github.io/posts/garbage-collection-js/</loc>
+    <lastmod>2022-11-18</lastmod>
   </url>
 </urlset>
