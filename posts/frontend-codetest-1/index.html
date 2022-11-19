@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177518541-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XL2F2ZJSGS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'UA-177518541-1');
-</script>
+    gtag('config', 'G-XL2F2ZJSGS');
+  </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[FE 면접] 자바스크립트에서 어떻게 객체의 속성 변경을 막을 수 있을까?</title>
@@ -51,7 +50,7 @@
 <p>위에서 보듯이 <code>name</code> 속성 변경 시도에 에러가 발생하진 않지만 실제 값에 변경은 일어나지 않았다.</p>
 <h3 id="%2B%EC%95%8C%ED%8C%8C">+알파 <a class="direct-link" href="#%2B%EC%95%8C%ED%8C%8C">#</a></h3>
 <p>설명자를 통해 속성의 열거를 막을 수도 있다. <code>enumerable</code>을 false로 설정하면 된다.<br>
-만약 객체에 속한 모든 속성의 변경을 막고 싶으면 <code>Object.freeze(object)</code>를 사용하면 된다. 위 함수는 <code>writable</code>과 <code>configurable</code>를 flase로 설정한다.</p>
+만약 객체에 속한 모든 속성의 변경을 막고 싶으면 <code>Object.freeze(object)</code>를 사용하면 된다. 위 함수는 모든 속성의 <code>writable</code>과 <code>configurable</code>를 flase로 설정한다.</p>
 <pre class="language-js"><code class="language-js">Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span>guest<span class="token punctuation">)</span><br><br>Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span>guest<span class="token punctuation">,</span> <span class="token string">'name'</span><span class="token punctuation">)</span><br><span class="token comment">// {value: 'John', writable: false, enumerable: true, configurable: false}</span><br>Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span>guest<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">)</span><br><span class="token comment">// {value: 25, writable: false, enumerable: true, configurable: false}</span></code></pre>
 <p><strong>Reference</strong><br>
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor() - JavaScript | MDN</a><br>
