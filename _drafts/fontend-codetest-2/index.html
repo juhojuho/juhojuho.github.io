@@ -11,7 +11,7 @@
   </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[FE 면접] 자바스크립트에서 어떻게 객체의 속성 변경을 막을 수 있을까?</title>
+    <title>[FE 면접] 쿠키(cookie)와 스토리지(localStorage, sessionStorage)의 차이점은 무엇인가?</title>
     <meta name="description" content="프론트엔드 개발자 면접에서 나올 수 있는 질문에 대한 해답을 알아보는 포스팅이다. 자바스크립트(javascript)에서 객체(object)의 속성(property) 변경은 설명자(descriptor)를 통해 막을 수 있다.">
     <meta name="google-site-verification" content="l1HzNpcuiOpfuOSg2r-oNIA3H7Csyir1J6Ndxn58yBg" />
     <link rel="stylesheet" href="/css/index.css">
@@ -29,12 +29,12 @@
     </header>
 
     <main class="tmpl-post">
-      <h1>[FE 면접] 자바스크립트에서 어떻게 객체의 속성 변경을 막을 수 있을까?</h1>
+      <h1>[FE 면접] 쿠키(cookie)와 스토리지(localStorage, sessionStorage)의 차이점은 무엇인가?</h1>
 
 <h3 id="%EB%A9%B4%EC%A0%91-%EC%A7%88%EB%AC%B8">면접 질문 <a class="direct-link" href="#%EB%A9%B4%EC%A0%91-%EC%A7%88%EB%AC%B8">#</a></h3>
-<p>객체(object)의 속성(property)의 변경을 막는 방법을 설명하라. 즉, 다음과 같이 이미 선언된 객체의 <code>name</code> 속성 변경을 막는 코드를 작성하라.</p>
-<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> guest <span class="token operator">=</span> <span class="token punctuation">{</span><br>    name<span class="token operator">:</span> <span class="token string">'John'</span><span class="token punctuation">,</span><br>    age<span class="token operator">:</span> <span class="token number">25</span><br><span class="token punctuation">}</span><br><br>guest<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Peter'</span> <span class="token comment">// ?</span></code></pre>
+<p>브라우저에 데이터를 저장하는 대표적인 방법은 쿠키(cookie)와 스토리지(localStorage, sessionStorage)를 활용하는 것이다. 쿠키와 스토리지가 서로 어떻게 다른지 그 차이점에 대해 설명하라.</p>
 <h3 id="%EB%82%98%EB%A7%8C%EC%9D%98-%EB%8C%80%EB%8B%B5">나만의 대답 <a class="direct-link" href="#%EB%82%98%EB%A7%8C%EC%9D%98-%EB%8C%80%EB%8B%B5">#</a></h3>
+<p>가장 중요한 차이점은 브라우저에서 서버로 HTTP 요청(request)시 쿠키는 함께 전송되지만, 스토리지는 전송되지 않는다는 점이다. 쿠키에 저장된 데이터는 (도메인이 같은) 서버에 보내는 모든 요청에 HTTP <code>Cookie</code> 헤더에 포함되어 전송된다. 또한, 쿠키는 서버가 직접 HTTP <code>Set-Cookie</code> 헤더를 통해 직접적인 조작도 가능하다. 반연에 스토리지는 서버가 직접 조작할 수 없으며, 서버에 보내는 요청에 자동으로 포함되지 않는다.</p>
 <p>설명자(Descriptor)를 활용하여 객체의 속성값 변경을 막을 수 있다. 설명자는 말 그대로 객체의 한 속성에 대한 정보를 <strong>설명</strong>하는 값으로 다음과 같은 몇 가지 정보를 내포한다.</p>
 <ol>
 <li>value: 해당 속성의 값(위 코드에서 'John')</li>
@@ -58,13 +58,13 @@
 
 
 <hr>
-<ul><li>Next: <a href="/posts/open-api-generator-custom-template/">OpenAPI Generator 템플릿 변경하기</a></li><li>Previous: <a href="/posts/garbage-collection-js/">[JS] 가비지 컬렉션 (Garbage Collection)</a></li>
+<ul>
 </ul>
 
     </main>
 
     <footer></footer>
 
-    <!-- Current page: /posts/frontend-codetest-1/ -->
+    <!-- Current page: /_drafts/fontend-codetest-2/ -->
   </body>
 </html>

@@ -57,17 +57,22 @@
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/</loc>
-    <lastmod>2022-11-16</lastmod>
-  </url>
-  
-  <url>
     <loc>https://juhojuho.github.io/tags/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%20%EB%A9%B4%EC%A0%91/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
   <url>
+    <loc>https://juhojuho.github.io/tags/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
     <loc>https://juhojuho.github.io/tags/%EB%B8%94%EB%A1%9C%EA%B7%B8/</loc>
+    <lastmod>2022-11-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/tags/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C/</loc>
     <lastmod>2022-11-16</lastmod>
   </url>
   
@@ -94,5 +99,15 @@
   <url>
     <loc>https://juhojuho.github.io/posts/frontend-codetest-1/</loc>
     <lastmod>2022-11-18</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/_drafts/fontend-codetest-2/</loc>
+    <lastmod>2022-11-21</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/posts/open-api-generator-custom-template/</loc>
+    <lastmod>2022-12-14</lastmod>
   </url>
 </urlset>

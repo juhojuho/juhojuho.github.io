@@ -5,12 +5,117 @@
 	
 	<link href="https://juhojuho.github.io/feed/feed.xml" rel="self"/>
 	<link href="https://juhojuho.github.io/"/>
-	<updated>2022-11-17T15:00:00+09:00</updated>
+	<updated>2022-12-13T15:00:00+09:00</updated>
 	<id>https://juhojuho.github.io/</id>
 	<author>
 		<name>선주호</name>
 		<email>me@juhojuho.com</email>
 	</author>
+	
+	<entry>
+		<title>OpenAPI Generator 템플릿 변경하기</title>
+		<link href="https://juhojuho.github.io/posts/open-api-generator-custom-template/"/>
+		<updated>2022-12-13T15:00:00+09:00</updated>
+		<id>https://juhojuho.github.io/posts/open-api-generator-custom-template/</id>
+		<content type="html">&lt;p&gt;이전에 진행하던 프로젝트에서 타입스크립트를 적극적으로 활용하지 못했다. 그 이유는 촉박한 개발 시간에 수백 개의 타입을 일일이 입력하기 버거웠기(+귀찮음) 때문이다. 그러던 중 옆 팀에서 개발한 꿀 라이브러리를 알게 되었다. 스웨거에 정의된 타입을 자동으로 타입스크립트 파일로 전환시키는 딱 찾던 기능이었다. 스웨거에 명세(specification)만 잘 작성되어 있다면 커맨드 한 줄로 그 성가신 작업이 단숨에 해결되었다. 위 라이브러리는 vue 기반이었고, 다행히 당시 프로젝트를 모두 vue로 진행하던 터라 찰떡이었다.&lt;/p&gt;
+&lt;p&gt;이후 새로운 프로젝트에서 react를 사용하게 되었고, 이에 맞춰 새로운 라이브러리 개발이 필요했다. 나는 &lt;a href=&quot;https://openapi-generator.tech/&quot;&gt;OpenAPI Generator&lt;/a&gt;를 사용하는 방법을 모색했지만 변환된 타입 포맷이 우리가 원하는 방식이 아니었다. 특히, enum을 처리하는 방식이 우리 팀 내에서 다루던 것과 상이했다. 다행히 템플릿을 변경할 수 있어 우리가 바라는 포맷 대로 타입을 뽑을 수 있었다.&lt;/p&gt;
+&lt;p&gt;결국 기존 라이브러리를 react에 맞춰 수정하는 방식으로 결정해 위 해결책이 쓰일 일은 없었다. 그렇지만 OpenAPI Generator의 템플릿을 변경하는 방법이 (영문 기준으로도) 잘 정리된 글이 없었기 때문에 이번 기회에 글로 남기게 되었다.&lt;/p&gt;
+&lt;h2 id=&quot;%EA%B8%B0%EB%B3%B8%EC%A0%81%EC%9D%B8-%EC%BB%A4%EB%A7%A8%EB%93%9C&quot;&gt;기본적인 커맨드 &lt;a class=&quot;direct-link&quot; href=&quot;#%EA%B8%B0%EB%B3%B8%EC%A0%81%EC%9D%B8-%EC%BB%A4%EB%A7%A8%EB%93%9C&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;우선 OpenApi Generator 설치 방법은 &lt;a href=&quot;https://openapi-generator.tech/docs/installation&quot;&gt;공식 홈페이지&lt;/a&gt;에 자세히 나와 있으니 참고하면 된다.&lt;/p&gt;
+&lt;p&gt;기본적인 사용 방법은 다음과 같다. 각 flag에 대한 자세한 설명 역시 공식 홈페이지에 나와 있다. 이번 포스팅에서는 generator로 &lt;code&gt;typescript-axios&lt;/code&gt;를 사용하도록 하겠다.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;openapi-generator generate &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br&gt;  -i &lt;span class=&quot;token variable&quot;&gt;${SPEC_FILE_PATH}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br&gt;  -g &lt;span class=&quot;token variable&quot;&gt;${GENERATOR_TYPE}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br&gt;  -o &lt;span class=&quot;token variable&quot;&gt;${OUTPUT_DIRECTORY}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br&gt;  -t &lt;span class=&quot;token variable&quot;&gt;${CUSTOM_TEMPLATE}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&lt;br&gt;&lt;br&gt;openapi-generator generate -i SWAGGER_URL -g typescript-axios -o ./output --skip-validate-spec&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 커맨드를 실행하면 output 폴더에 타입스크립트 타입과 axios api 호출 코드가 자동 생성된다. 기본으로 제공하는 템플릿을 사용하면 타입 출력물 예시는 아래와 같다.&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Student&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;/**&lt;br&gt;     * &lt;br&gt;     * @type {number}&lt;br&gt;     * @memberof Student&lt;br&gt;     */&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&#39;age&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token comment&quot;&gt;/**&lt;br&gt;     * &lt;br&gt;     * @type {string}&lt;br&gt;     * @memberof Student&lt;br&gt;     */&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token string&quot;&gt;&#39;residence&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; ResidenceEnum&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; ResidenceEnum &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    Seoul&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;SEOUL&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    Incheon&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;INCHEON&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    Busan&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;BUSAN&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 출력물에는 필요없는 정보가 포함되고 우리가 원하는 enum 처리 방식이 아니므로 이번 포스팅에서 아래와 같이 나타나도록 바꾸는 과정을 다룰 것이다.&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Student&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    age&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br&gt;    residence&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;SEOUL&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;INCHEON&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;BUSAN&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%83%9D%EC%84%B1%EA%B3%BC-mustache&quot;&gt;템플릿 생성과 mustache &lt;a class=&quot;direct-link&quot; href=&quot;#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%83%9D%EC%84%B1%EA%B3%BC-mustache&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;커맨드 flag 중 -t를 통해 기본적으로 제공하는 템플릿이 아닌 우리가 자체적으로 설정한 템플릿을 사용할 수 있다. 처음부터 템플릿을 작성하려면 비효율적이므로 기본 템플릿에 우리 입맛대로 수정하는 방향이 더 낫다. 다음 커맨드로 기본 템플릿을 생성하자.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;openapi-generator author template -g typescript-axios -o custom_template&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;custom_template 폴더에 &lt;code&gt;.mustache&lt;/code&gt; 확장자로 된 여러 파일을 생성된 것을 확인할 수 있다. &lt;code&gt;mustache&lt;/code&gt;는 간단한 템플릿 엔진으로 쉽게 생각해서 (정확한 비유는 아니지만) model을 view로 바꾸는 과정이다. 인풋으로 들어온 변수를 미리 정해놓은 틀에 맞춰 다양한 언어 파일로 변환시킨다. &lt;a href=&quot;https://mustache.github.io/mustache.5.html&quot;&gt;매뉴얼&lt;/a&gt;을 확인하면 더 자세히 알 수 있지만 아래 필수적인 문법을 설명한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;: key에 대응하는 값을 출력한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;// template
+Hi, I&#39;m !
+
+// input
+{ name: &#39;Juho&#39; }
+
+// output
+Hi, I&#39;m Juho!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;: if문으로 key가 true면 사이에 적힌 구문을 실행한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;// template
+
+Juho
+
+
+// input
+{ isHuman: true }
+
+// output
+Juho
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2-1. 만약 key에 대응하는 값이 리스트면 그 요소들을 열거한다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// template
+
+
+
+
+// input
+{ students: [ { age: 13 }, { age: 16 }, { age: 19 } ] }
+
+// output
+13
+16
+19
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;: 위 2번과 반대로 key가 false면 사이에 적힌 구문을 실행한다. key에 대응하는 값이 리스트면 그 요소들을 열거한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;// template
+
+Hamster
+
+
+// input
+{ isHuman: false }
+
+// output
+Hamster
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;%EC%BB%A4%EC%8A%A4%ED%85%80-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%9C%BC%EB%A1%9C-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0&quot;&gt;커스텀 템플릿으로 변경하기 &lt;a class=&quot;direct-link&quot; href=&quot;#%EC%BB%A4%EC%8A%A4%ED%85%80-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%9C%BC%EB%A1%9C-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;custom_template 폴더의 &lt;code&gt;modelGeneric.mustache&lt;/code&gt; 파일에 타입을 정의하는 템플릿이 있다. 우선 필요 없는 부분을 모두 삭제하자. enum을 정의하는 부분과 프로퍼티를 설명하는 부분(@type, @member 등)을 삭제한 후, 아래 코드의 수정이 필요하다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39;&#39;?: }} | null;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;}&lt;/code&gt; 부분을 수정해야 &lt;code&gt;&#39;SEOUL&#39; | &#39;INCHEON&#39; | &#39;BUSAN&#39;&lt;/code&gt;와 같은 방식으로 enum을 표현할 수 있다. 우선, 위 enum에 대응하는 key가 무엇인지 알아야 한다. 이를 아는 방법은 아래와 같은 커맨드를 추가해 템플릿 엔진의 인풋으로 들어가는 값이 무엇인지 확인해야 한다. &lt;code&gt;generate&lt;/code&gt; 커맨드의 마지막에 &lt;code&gt;--global-property debugModels=true&lt;/code&gt;을 추가하면 각종 로그와 템플릿 엔진의 값이 모두 출력된다. 로그를 보면 아래와 같이 포맷으로 enum 멤버가 전달되는 것을 확인할 수 있다.&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;...&lt;br&gt;&lt;span class=&quot;token property&quot;&gt;&quot;allowableValues&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;enumVars&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;values&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;SEOUL&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;INCHEON&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;BUSAN&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br&gt;...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 &lt;code&gt;values&lt;/code&gt;에 담긴 값이 &lt;code&gt;&#39;SEOUL&#39; | &#39;INCHEON&#39; | &#39;BUSAN&#39;&lt;/code&gt;와 같이 표현될 수 있도록 다음 과정을 거쳐 템플릿을 변경해야 한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;우선, 내부값에 접근하기 위해 &lt;code&gt;allowableValues&lt;/code&gt;와 &lt;code&gt;values&lt;/code&gt;가 유효한 값인지 확인해야 한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;이제 값을 작은 따음표와 함께 출력하고, 각 멤버를 구분하기 위해 &lt;code&gt;|&lt;/code&gt;를 공백과 함께 추가한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;{{#allowableValues}}{{#values}}&#39;{{.}}&#39; | {{/values}}{{/allowableValues}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;이 때, 마지막 멤버 뒤에는 &lt;code&gt;|&lt;/code&gt;가 출력되면 안 되므로 이를 방지하는 조건문을 추가한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;{{#allowableValues}}{{#values}}&#39;{{.}}&#39;{{^-last}} | {{/-last}}{{/values}}{{/allowableValues}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기까지 완성된 템플릿으로 다시 generator를 돌리면 우리가 원하는 방식대로 타입스크립트 타입 파일이 출력될 것이다. 이 글은 간단한 튜토리얼로 따라오는데 꼭 필요한 정보만 설명했다. 이외에도 수많은 옵션이 존재하므로 아래 레퍼런스를 참고해 원하는 커스텀 템플릿을 만들 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reference&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&quot;https://openapi-generator.tech/&quot;&gt;OpenAPI Generator 공식 홈페이지&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://github.com/OpenAPITools/openapi-generator/blob/master/docs/templating.md&quot;&gt;OpenAPI Generator 템플릿 문서&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://mustache.github.io/mustache.5.html&quot;&gt;mustache 매뉴얼&lt;/a&gt;&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>[FE 면접] 자바스크립트에서 어떻게 객체의 속성 변경을 막을 수 있을까?</title>
