@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://juhojuho.github.io/posts/why-elixir-is-god-language/</loc>
-    <lastmod>2018-09-07</lastmod>
+    <loc>https://juhojuho.github.io/posts/hexo-tip/</loc>
+    <lastmod>2017-04-27</lastmod>
   </url>
   
   <url>
-    <loc>https://juhojuho.github.io/posts/hexo-tip/</loc>
-    <lastmod>2019-04-27</lastmod>
+    <loc>https://juhojuho.github.io/posts/why-elixir-is-god-language/</loc>
+    <lastmod>2017-09-07</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juhojuho.github.io/posts/new-language-translation/</loc>
+    <lastmod>2017-10-26</lastmod>
   </url>
   
   <url>
     <loc>https://juhojuho.github.io/posts/js-arrow-function/</loc>
     <lastmod>2019-08-01</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juhojuho.github.io/posts/new-language-translation/</loc>
-    <lastmod>2019-10-26</lastmod>
   </url>
   
   <url>
