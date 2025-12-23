@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177518541-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177518541-1');
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity 사용 후기</title>
+    <meta name="description" content="가끔 우리회사 서비스가 왜 이렇게 느려졌지 싶을 때가 있다. 특정 배포 이후 성능이 저하된 것 같은데, 배포를 잦게 하다보면 어떤 버전이 크리티컬한 영향을 미쳤는지 파악하기 어렵다. Lighthouse 기반의 웹 품질 측정 히스토리가 남아 있다면 이를 추적해 범인을 찾아내기 쉽지 않을까 생각이 들었다. 또한, UX 기반의 의사결정을 내릴 때 도움이 되는 지표로 사용할 수도 있다고 생각했다.">
+    <meta name="google-site-verification" content="l1HzNpcuiOpfuOSg2r-oNIA3H7Csyir1J6Ndxn58yBg" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/prim-dracula.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="햄스터 갬성 블로그">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="햄스터 갬성 블로그">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/">햄스터 갬성 블로그</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/">Home</a></li>
+      </ul>
+    </header>
+
+    <main class="tmpl-post">
+      <h1>Antigravity 사용 후기</h1>
+
+<p><img src="/img/antigravity.png" alt="Antigravity"></p>
+<p>가끔 우리회사 서비스가 왜 이렇게 느려졌지 싶을 때가 있다. 특정 배포 이후 성능이 저하된 것 같은데, 배포를 잦게 하다보면 어떤 버전이 크리티컬한 영향을 미쳤는지 파악하기 어렵다. Lighthouse 기반의 웹 품질 측정 히스토리가 남아 있다면 이를 추적해 범인을 찾아내기 쉽지 않을까 생각이 들었다. 또한, UX 기반의 의사결정을 내릴 때 도움이 되는 지표로 사용할 수도 있다고 생각했다.</p>
+<p>가볍게 진행하는 프로젝트이기 때문에 구글에서 새로 나온 AI Agent 기반의 IDE <a href="https://antigravity.google/">Antigravity</a>를 사용해 보았다. 목표는 코드 한줄도 안 짜고 프로프팅으로만 개발하기..!</p>
+<h2 id="1">1 <a class="direct-link" href="#1">#</a></h2>
+<p>흐름은 대략 이런식이다. 요구사항을 요청하면 일종의 개발 계획서를 보여주고 허락을 구한다. 개발자가 기획자가 되고, AI가 개발자가 된 느낌이랄까. 내 요구사항은 다음과 같다.</p>
+<pre><code>목표: 우리 사이트들의 Lighthouse 점수(성능, 접근성, SEO 등)를 매일 자동으로 기록하고, 대시보드에서 보고 싶다.
+기술스택: Next.js(App router), Firebase, Tailwind
+세부사항: 1) 매일 한번 점수를 측정하고, 이를 Firebase DB에 저장하여 재사용한다. 등등등
+</code></pre>
+<p>Antigravity는 Implementation Plan을 작성하고 개발자의 confirm을 요청한다. 이때, 내가 원하는 대로 계획서를 수정해도 된다.<br>
+이후 패키지 설치부터, 코드 작성, 테스트까지 멈추지 않고 진행한다. 크롬 익스텐션을 설치해서 로컬 서버 띄어서 이것저것 클릭해보면서 구현물에 대한 &quot;검증&quot;하는 과정을 실시간으로 보여준다. 에러가 발생하면 스스로 이를 해결해서 또다시 검증하는 과정을 반복하며 구현물의 완성도를 높여 나갔다.</p>
+<p>프롬프팅 하나만으로 서비스 하나가 후딱 만들어졌다. 수정하면 좋을 거 같은 사항은 기획자 레벨에서 요청하면 거의 대부분 의도한 대로 작동했다. (물론 코드 레벨에서 요청하면 원하는 바가 더 정확히 전달되는 느낌이다.) 배포에 필요한 과정(환경변수 설정이라던지)도 순서에 맞춰 딱딱 알려주는데 굉장히 편리했다.</p>
+<h2 id="2">2 <a class="direct-link" href="#2">#</a></h2>
+<p>놀랐던 건 디버깅 경험이었다. Vercel에 배포하고 Cron Job을 돌렸는데, 에러가 발생했다.<br>
+첫 에러는 타임아웃 에러였고, 에러 로그를 그대로 복붙해서 물어봤다. 대충 예상은 했었는데 이유는 역시나 품질 측정을 직렬로 해서 타임아웃이 난 것이었다. Antigravity도 이를 제대로 추정했고, API 호출을 병렬적으로 진행해 해결했다.</p>
+<p>이후 DB에 저장이 제대로 되지 않는 에러가 발생했다. 따로 찍힌 에러 로그가 없었기 때문에 추상적으로 DB에 값이 저장되지 않는다고 남겼는데, 스스로 원인 추적을 위한 로깅을 구현했고 이를 다시 실행했을 때 나오는 로그를 알려달라고 했다. 그대로 따라했더니 로그를 분석해서 자기 스스로 문제를 후딱 해결해 버렸다. (이슈 자체는 DB가 초기화되지 않아 발생하는 것이었다.)</p>
+<p>에러 로그를 기반으로 문제를 해결하는 것은 그다지 놀랍지 않았으나, 정확한 원인 파악을 위해 스스로 설계하는 기능은 새로웠다. 모르는 것도 아는 척하는 할루시네이션 효과가 AI의 단점이라 생각했는데, 이제는 본인이 무엇을 아는지 모르는지 파악하고 있는 느낌이었다.</p>
+<h2 id="3">3 <a class="direct-link" href="#3">#</a></h2>
+<p>원하는 구현물로 나오기까지 2시간 정도 걸렸던 것 같다. 혼자 했다면 2~3일 걸렸을 작업을 하루 만에, 그것도 훨씬 높은 퀄리티로 끝낼 수 있었다.</p>
+<p>물론 완벽하지는 않았다. 기능상으로는 보이지 않는 불필요한 코드들(과도한 유효성 검증이라던지)이 섞여있어 에러가 유발되기도하여 이는 코드를 확인하고 수동으로 제거해줬다. 기능 구현 자체는 정말정말 잘한다.</p>
+<p>경험을 요약하자면 개발자로 이루어진 한 팀과 함께 일하는 느낌이었다. AI Agent를 병렬로 처리도 가능하다보니 내가 orchestration만 잘한다면 얼마든지 개발 시간을 단축시킬 수도 있어 보였다. 누구나 강조하는 것처럼 이제는 기획과 설계가 개발자의 필수 역량인가 보다.</p>
+
+
+<hr>
+<ul><li>Previous: <a href="/posts/window10-usb-from-mac/">맥OS에서 윈도우10 설치 USB 만들기</a></li>
+</ul>
+
+    </main>
+
+    <footer></footer>
+
+    <!-- Current page: /posts/antigravity/ -->
+  </body>
+</html>
